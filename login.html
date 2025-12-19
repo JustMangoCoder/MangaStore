@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./asset/style/styleLogInRegister.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <title>Sign In</title>
+  </head>
+  <body>
+    <video class="background-video" autoplay>
+      <source src="./asset/img/LiveWallpaper.mp4" type="video/mp4" />
+    </video>
+
+      <div class="MainPlace">
+        <div class="MainPlaceLayout">
+          <h1>Welcome Back</h1>
+          <div style="color: #bdbdbd">Sign In to your page</div>
+          <form class="SignInSection">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" />
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              id="password"
+            />
+            <div
+              style="
+                margin-top: 10px;
+                justify-content: space-between;
+                display: flex;
+              "
+            >
+              <label style="color: #bdbdbd">
+                <input
+                  type="checkbox"
+                  id="HideAndShow"
+                  onclick="togglePassword()"
+                />
+                Show your password?
+              </label>
+              <a style="color: #bdbdbd" id="ForgotPassword">Forgot Password?</a>
+            </div>
+          </form>
+          <a id="Sign" href="./index.html">Sign In</a>
+          <div style="color: #bdbdbd">
+            Dont't have an account?
+            <a id="SignUp" href="./register.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

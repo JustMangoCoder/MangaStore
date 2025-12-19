@@ -1,0 +1,42 @@
+.WholePage {
+  overflow-y: scroll;
+  background-color: white;
+}
+/*Taskbar*/
+#TaskBar {
+  border-bottom: 2px solid rgb(217, 214, 214);
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+  margin: 0;
+}
+.LogoWatermark {
+  font-family: "Caveat Brush";
+  font-size: 32px;
+}
+.Logo img {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+.LogoSection {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  cursor: pointer;
+}
+/**/
+.IndexImage {
+  width: 99vw;
+  height: 80vh;
+  object-fit: cover;
+}
+iframe {
+  border: none;
+  margin: 0;
+}
+body {
+  padding: 0;
+  margin: 0;
+}

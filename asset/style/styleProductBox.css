@@ -1,0 +1,42 @@
+.ProductBox {
+  border-radius: 10px;
+  border: 2px solid rgb(217, 214, 214);
+  padding: 20px;
+  width: 18vw;
+  height: 44vh;
+  align-items: center;
+  overflow: hidden;
+}
+.ProductBox img {
+  height: 30vh;
+  width: 100%;
+  object-fit: contain;
+}
+.ProductContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ProductName {
+  font-family: "Montserrat";
+  display: -webkit-box;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.Price {
+    font-size: 14px;
+    color: #018790;
+    font-weight: bold;
+}
+.checked {
+  color: orange;
+}
+body {
+    font-family: "Montserrat";
+}
+/*https://colorhunt.co/palette/00546101879000b7b5f4f4f4*/

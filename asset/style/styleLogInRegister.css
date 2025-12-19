@@ -1,0 +1,76 @@
+body {
+  font-family: "Montserrat";
+}
+.background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -100;
+  object-fit: cover;
+  overflow: hidden;
+}
+.MainPlace {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70vh;
+  width: 40vw;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.MainPlaceLayout {
+  padding: 4vh 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+h1 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.SignInSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0 20px 0;
+}
+input {
+  padding: 15px 10px 15px 10px;
+  background-color: white;
+  border-radius: 5px;
+  border-color: red;
+  color: white;
+}
+input ::placeholder {
+  border-color: #00b4d8;
+}
+label {
+  color: white;
+}
+#ForgotPassword {
+  text-decoration: underline;
+  cursor: pointer;
+  align-self: flex-end;
+}
+#Sign {
+  background-color: #00b4d8;
+  font-size: 16px;
+  padding: 15px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+#SignUp {
+  color: #00b4d8;
+  cursor: pointer;
+}
