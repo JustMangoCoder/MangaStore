@@ -8,50 +8,372 @@
       href="https://fonts.googleapis.com/css?family=Montserrat"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
     <title>Sign In</title>
   </head>
   <body>
     <video class="background-video" autoplay>
-      <source src="./asset/img/LiveWallpaper.mp4" type="video/mp4" />
-    </video>
-
-      <div class="MainPlace">
-        <div class="MainPlaceLayout">
-          <h1>Welcome Back</h1>
-          <div style="color: #bdbdbd">Sign In to your page</div>
-          <form class="SignInSection">
-            <label>Email</label>
-            <input type="email" placeholder="Enter your email" />
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              id="password"
-            />
-            <div
-              style="
-                margin-top: 10px;
-                justify-content: space-between;
-                display: flex;
-              "
+      <source src="./asset/img/LiveWallpaper.mp4" type="video/mp4" /></video
+    ><!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Auth Toggle Container</title>
+      </head>
+      <body>
+        <div class="auth-wrapper MainPlace">
+          <div class="tabs">
+            <a class="tab active" id="loginTab" onclick="showLogin()"
+              >Sign in</a
             >
-              <label style="color: #bdbdbd">
-                <input
-                  type="checkbox"
-                  id="HideAndShow"
-                  onclick="togglePassword()"
-                />
-                Show your password?
-              </label>
-              <a style="color: #bdbdbd" id="ForgotPassword">Forgot Password?</a>
+            <a class="tab" id="registerTab" onclick="showRegister()"
+              >Register</a
+            >
+            <div class="underline" id="underline"></div>
+          </div>
+          <!-- Sign In Panel -->
+
+          <div id="signin" class="panel active">
+            <div class="MainPlaceLayout">
+              <h1>Welcome Back</h1>
+              <form class="SignInSection">
+                <label>Email</label>
+                <div class="InputDesgin">
+                  <span class="Icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="white"
+                      class="bi bi-envelope"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                      /></svg></span
+                  ><input
+                    type="email"
+                    placeholder="Enter your email"
+                    id="LogInEmail"
+                  />
+                </div>
+                <label>Password</label>
+                <div class="InputDesgin">
+                  <span class="Icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="white"
+                      class="bi bi-lock-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4m0 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"
+                      /></svg></span
+                  ><input
+                    type="password"
+                    placeholder="Enter your password"
+                    id="LogInPassword"
+                    class="password"
+                  />
+                </div>
+
+                <div
+                  style="
+                    margin-top: 10px;
+                    justify-content: space-between;
+                    display: flex;
+                  "
+                >
+                  <a class="ShowPass" onclick="togglePassword()">
+                    <span
+                      ><input
+                        type="checkbox"
+                        id="CheckBoxSignIn"
+                        onclick="togglePassword()"
+                    /></span>
+                    <div>Show your password?</div>
+                  </a>
+                  <a class="ForgotPassword">Forgot Password?</a>
+                </div>
+              </form>
+              <button class="Sign" id="LoginButton" type="button">
+                Sign In
+              </button>
             </div>
-          </form>
-          <a id="Sign" href="./index.html">Sign In</a>
-          <div style="color: #bdbdbd">
-            Dont't have an account?
-            <a id="SignUp" href="./register.html">Sign Up</a>
+          </div>
+
+          <!-- Register Panel -->
+          <div id="register" class="panel">
+            <div class="MainPlaceLayout">
+              <h1>Welcome to MangaStore</h1>
+              <form class="SignInSection">
+                <label>Username</label>
+                <div class="InputDesgin">
+                  <span class="Icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="white"
+                      class="bi bi-person-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+                      /></svg></span
+                  ><input
+                    type="text"
+                    placeholder="Enter your username"
+                    id="SignUpUsername"
+                  />
+                </div>
+                <label>Email</label>
+                <div class="InputDesgin">
+                  <span class="Icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="white"
+                      class="bi bi-envelope"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                      /></svg></span
+                  ><input
+                    type="email"
+                    placeholder="Enter your email"
+                    id="SignUpEmail"
+                  />
+                </div>
+                <label>Password</label>
+                <div class="InputDesgin">
+                  <span class="Icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="white"
+                      class="bi bi-lock-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4m0 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"
+                      /></svg></span
+                  ><input
+                    type="password"
+                    placeholder="Enter your password"
+                    id="SignUpPassword"
+                    class="password"
+                  />
+                </div>
+
+                <div
+                  style="
+                    margin-top: 10px;
+                    justify-content: space-between;
+                    display: flex;
+                  "
+                >
+                  <a class="ShowPass" onclick="togglePasswordSignUp()">
+                    <span
+                      ><input
+                        type="checkbox"
+                        id="CheckBoxSignUp"
+                        onclick="togglePasswordSignUp()"
+                    /></span>
+                    <div>Show your password?</div>
+                  </a>
+                  <a class="ForgotPassword">Forgot Password?</a>
+                </div>
+              </form>
+              <button class="Sign" id="SignUpButton" type="button">
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+        <script type="module">
+          import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+          } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+          import {
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc,
+            collection,
+            getDocs,
+            serverTimestamp,
+          } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-lite.js";
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+          import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+
+          // Your web app's Firebase configuration
+          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+          const firebaseConfig = {
+            apiKey: "AIzaSyA4qqrJ1zZ6NkufDcBtfRrHpr_S3RkG-H4",
+            authDomain: "mangastore-9268b.firebaseapp.com",
+            projectId: "mangastore-9268b",
+            storageBucket: "mangastore-9268b.firebasestorage.app",
+            messagingSenderId: "190342870546",
+            appId: "1:190342870546:web:411c9b58d14a85a47f4acb",
+            measurementId: "G-JV9VN7T01V",
+          };
+
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const analytics = getAnalytics(app);
+          const auth = getAuth();
+          const db = getFirestore();
+          //Function Log In
+          // Function Log In
+          const LogInEmail = document.getElementById("LogInEmail");
+          const LogInPassword = document.getElementById("LogInPassword");
+          const LoginButton = document.getElementById("LoginButton");
+          LoginButton.addEventListener("click", LogIn);
+
+          function LogIn() {
+            if (LogInEmail.value.trim() === "") {
+              alert("Email is blank!");
+              return;
+            }
+            if (LogInPassword.value.trim() === "") {
+              alert("Password is blank!");
+              return;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(LogInEmail)) {
+              alert("Invalid email format!");
+              return;
+            }
+            signInWithEmailAndPassword(
+              auth,
+              LogInEmail.value,
+              LogInPassword.value
+            )
+              .then((userCredential) => {
+                const user = userCredential.user;
+                console.log("Logged in:", user.uid); // For debugging
+                alert("Logged in successfully!"); // Provide visible feedback
+                window.location.href = "/index.html";
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert("Failed to Log In: " + errorCode + " - " + errorMessage);
+              });
+          }
+          //Function Sign Up ✅
+          const SignUpEmail = document.getElementById("SignUpEmail");
+          const SignUpPassword = document.getElementById("SignUpPassword");
+          const SignUpUsername = document.getElementById("SignUpUsername");
+          const SignUpButton = document.getElementById("SignUpButton");
+          SignUpButton.addEventListener("click", SignUp);
+
+          function SignUp() {
+            if (SignUpEmail.value.trim() === "") {
+              alert("Email is blank!");
+              return;
+            }
+
+            if (SignUpPassword.value.trim() === "") {
+              alert("Password is blank!");
+              return;
+            }
+
+            if (SignUpUsername.value.trim() === "") {
+              alert("Username is blank!");
+              return;
+            }
+
+            createUserWithEmailAndPassword(
+              auth,
+              SignUpEmail.value,
+              SignUpPassword.value
+            )
+              .then(async (userCredential) => {
+                const user = userCredential.user;
+
+                await setDoc(doc(db, "users", user.uid), {
+                  username: SignUpUsername.value,
+                  createdAt: serverTimestamp(),
+                  cart: "",
+                });
+                window.location.href = "/index.html";
+
+                console.log("User created:", user.uid);
+              })
+              .catch((error) => {
+                console.error("SIGN UP ERROR:", error);
+                alert(error.code + ": " + error.message);
+              });
+          }
+        </script>
+        <!-- Swtich log in and register -->
+        <script>
+          // Show and Hide Register
+          const loginTab = document.getElementById("loginTab");
+          const registerTab = document.getElementById("registerTab");
+          const underline = document.getElementById("underline");
+          const loginPanel = document.getElementById("signin");
+          const registerPanel = document.getElementById("register");
+
+          function showLogin() {
+            loginTab.classList.add("active");
+            registerTab.classList.remove("active");
+            underline.classList.remove("register");
+            loginPanel.classList.add("active");
+            registerPanel.classList.remove("active");
+          }
+
+          function showRegister() {
+            registerTab.classList.add("active");
+            loginTab.classList.remove("active");
+            underline.classList.add("register");
+            registerPanel.classList.add("active");
+            loginPanel.classList.remove("active");
+          }
+          function togglePassword() {
+            const ShowPassword = document.getElementById("LogInPassword");
+            const CheckBoxValue = document.getElementById("CheckBoxSignIn");
+
+            if (ShowPassword.type === "password") {
+              ShowPassword.type = "text";
+              CheckBoxValue.checked = true;
+            } else {
+              ShowPassword.type = "password";
+              CheckBoxValue.checked = false;
+            }
+          }
+          function togglePasswordSignUp() {
+            const ShowPasswordSignUp =
+              document.getElementById("SignUpPassword");
+            const CheckBoxValueSignUp =
+              document.getElementById("CheckBoxSignUp");
+            if (ShowPasswordSignUp.type === "password") {
+              ShowPasswordSignUp.type = "text";
+              CheckBoxValueSignUp.checked = true;
+            } else {
+              ShowPasswordSignUp.type = "password";
+              CheckBoxValueSignUp.checked = false;
+            }
+          }
+        </script>
+      </body>
+    </html>
   </body>
 </html>

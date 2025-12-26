@@ -16,20 +16,24 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 70vh;
   width: 40vw;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  justify-content: center;
 }
-
+label {
+  font-weight: bold;
+  color: white;
+}
 .MainPlaceLayout {
-  padding: 4vh 50px;
+  padding: 10px 50px 50px 50px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  justify-content: center;
 }
 h1 {
   color: white;
@@ -40,27 +44,53 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 20px 0 20px 0;
+  margin: 10px 0 10px 0;
 }
 input {
   padding: 15px 10px 15px 10px;
   background-color: white;
-  border-radius: 5px;
-  border-color: red;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border: transparent 0px;
+  width: 100%;
+  font-family: inherit;
+}
+input::placeholder {
+  color: #888;
+}
+.InputDesgin {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  background-color: #00b4d8;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.ShowPass {
+  gap: 10px;
   color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
 }
-input ::placeholder {
-  border-color: #00b4d8;
-}
-label {
-  color: white;
-}
-#ForgotPassword {
+
+.ForgotPassword {
   text-decoration: underline;
   cursor: pointer;
   align-self: flex-end;
+  color: white;
+  font-weight: bold;
 }
-#Sign {
+.Sign {
   background-color: #00b4d8;
   font-size: 16px;
   padding: 15px;
@@ -69,8 +99,72 @@ label {
   border-radius: 5px;
   text-decoration: none;
   text-align: center;
+    cursor: pointer;}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
 }
-#SignUp {
-  color: #00b4d8;
+/*Panel*/
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+h2 {
+  margin-bottom: 16px;
+  text-align: center;
+}
+/* Tabs */
+
+.tabs {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab {
+  padding: 12px 0;
   cursor: pointer;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.tab.active {
+  color: #00b4d8;
+}
+
+/* Sliding underline */
+.underline {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: #00b4d8;
+  transition: transform 0.3s ease;
+}
+
+.underline.register {
+  transform: translateX(100%);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
