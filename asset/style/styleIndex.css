@@ -1,6 +1,9 @@
 .WholePage {
-  overflow-y: scroll;
   background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  flex-direction: column;
 }
 /*Taskbar*/
 #TaskBar {
@@ -10,6 +13,7 @@
   padding: 10px;
   align-items: center;
   margin: 0;
+  width: 100%;
 }
 .LogoWatermark {
   font-family: "Caveat Brush";
@@ -25,18 +29,47 @@
   flex-direction: row;
   gap: 10px;
   cursor: pointer;
+  margin-right: auto;
+  max-width: 100%;
 }
-/**/
+.ToolSection {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  align-items: center;
+  gap: 10px;
+}
+.icon {
+  border-radius: 50%;
+  font-size: 16px;
+  padding: 10px;
+}
+.icon:hover {
+  background-color: rgb(232, 230, 230);
+}
+/*Image*/
 .IndexImage {
-  width: 99vw;
-  height: 80vh;
+  width: 100%;
+  max-width: 1024px;
+  height: auto;
+  max-height: 80vh;
   object-fit: cover;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
-iframe {
-  border: none;
-  margin: 0;
+/*Trending section*/
+.TitleHeader {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 body {
   padding: 0;
   margin: 0;
+}
+a {
+  cursor: pointer;
 }

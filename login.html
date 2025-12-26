@@ -255,11 +255,6 @@
               alert("Password is blank!");
               return;
             }
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(LogInEmail)) {
-              alert("Invalid email format!");
-              return;
-            }
             signInWithEmailAndPassword(
               auth,
               LogInEmail.value,
@@ -269,7 +264,7 @@
                 const user = userCredential.user;
                 console.log("Logged in:", user.uid); // For debugging
                 alert("Logged in successfully!"); // Provide visible feedback
-                window.location.href = "/index.html";
+                window.location.href = "./index.html";
               })
               .catch((error) => {
                 const errorCode = error.code;
@@ -313,7 +308,7 @@
                   createdAt: serverTimestamp(),
                   cart: "",
                 });
-                window.location.href = "/index.html";
+                window.location.href = "./index.html";
 
                 console.log("User created:", user.uid);
               })
