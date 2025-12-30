@@ -168,3 +168,7 @@ h2 {
     transform: translateY(0);
   }
 }
+.IconSize {
+  font-size: 24px;
+  color: white;
+}

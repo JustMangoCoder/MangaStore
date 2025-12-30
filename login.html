@@ -43,17 +43,7 @@
                 <label>Email</label>
                 <div class="InputDesgin">
                   <span class="Icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="white"
-                      class="bi bi-envelope"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
-                      /></svg></span
+                    <i class="IconSize bi bi-envelope"></i> </span
                   ><input
                     type="email"
                     placeholder="Enter your email"
@@ -63,18 +53,7 @@
                 <label>Password</label>
                 <div class="InputDesgin">
                   <span class="Icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="white"
-                      class="bi bi-lock-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4m0 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"
-                      /></svg></span
+                    <i class="IconSize bi bi-lock-fill"></i> </span
                   ><input
                     type="password"
                     placeholder="Enter your password"
@@ -116,18 +95,9 @@
                 <label>Username</label>
                 <div class="InputDesgin">
                   <span class="Icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="white"
-                      class="bi bi-person-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
-                      /></svg></span
-                  ><input
+                    <i class="IconSize bi bi-person-fill"></i
+                  ></span>
+                  <input
                     type="text"
                     placeholder="Enter your username"
                     id="SignUpUsername"
@@ -136,18 +106,9 @@
                 <label>Email</label>
                 <div class="InputDesgin">
                   <span class="Icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="white"
-                      class="bi bi-envelope"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
-                      /></svg></span
-                  ><input
+                    <i class="IconSize bi bi-envelope"></i>
+                  </span>
+                  <input
                     type="email"
                     placeholder="Enter your email"
                     id="SignUpEmail"
@@ -156,19 +117,9 @@
                 <label>Password</label>
                 <div class="InputDesgin">
                   <span class="Icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="white"
-                      class="bi bi-lock-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4m0 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"
-                      /></svg></span
-                  ><input
+                    <i class="IconSize bi bi-lock-fill"></i>
+                  </span>
+                  <input
                     type="password"
                     placeholder="Enter your password"
                     id="SignUpPassword"
@@ -306,7 +257,7 @@
 
                 await setDoc(doc(db, "users", user.uid), {
                   username: SignUpUsername.value,
-                  cart : {},
+                  cart: {},
                   createdAt: serverTimestamp(),
                 });
                 window.location.href = "./index.html";
