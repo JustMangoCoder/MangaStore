@@ -13,7 +13,8 @@
   padding: 10px;
   align-items: center;
   margin: 0;
-  width: 100%;
+  max-width: 100%;;
+  flex-wrap: wrap;
 }
 .LogoWatermark {
   font-family: "Caveat Brush";
@@ -29,7 +30,6 @@
   flex-direction: row;
   gap: 10px;
   cursor: pointer;
-  margin-right: auto;
   max-width: 100%;
 }
 .ToolSection {
@@ -38,11 +38,13 @@
   margin-left: auto;
   align-items: center;
   gap: 10px;
+  min-width: 0
 }
 .icon {
   border-radius: 50%;
   font-size: 16px;
   padding: 10px;
+  color: black;
 }
 .icon:hover {
   background-color: rgb(232, 230, 230);
@@ -69,6 +71,7 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Montserrat";
 }
 a {
   cursor: pointer;

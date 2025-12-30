@@ -1,3 +1,4 @@
+/*Normal page*/
 .ProductBox {
   border-radius: 10px;
   border: 2px solid rgb(217, 214, 214);
@@ -6,9 +7,12 @@
   height: 44vh;
   align-items: center;
   overflow: hidden;
+  margin-left: 16px;
 }
 .ProductBox img {
-  height: 30vh;
+  max-height: 30vh;
+  height: auto;
+
   width: 100%;
   object-fit: contain;
 }
@@ -29,14 +33,41 @@
   -webkit-line-clamp: 2;
 }
 .Price {
-    font-size: 14px;
-    color: #018790;
-    font-weight: bold;
+  font-size: 14px;
+  color: #018790;
+  font-weight: bold;
 }
 .checked {
   color: orange;
 }
-body {
-    font-family: "Montserrat";
+.OtherHalf {
+  margin: 0;
+  transform: scaleX(-1);
 }
-/*https://colorhunt.co/palette/00546101879000b7b5f4f4f4*/
+.BuyButton {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+  padding: 0 16px;
+  height: 32px;
+  border-radius: 15px;
+  transition: all 0.25s;
+  cursor: pointer;
+  border: 1px solid #ceccd3;
+}
+.BuyButton:hover {
+  background-color: #018790;
+  color: white;
+  transition: all 0.25s;
+}
+body {
+  font-family: "Montserrat";
+}
+/*Index page*/
+.ProductIndexSection {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}

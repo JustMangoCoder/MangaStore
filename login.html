@@ -214,6 +214,7 @@
             getDoc,
             collection,
             getDocs,
+            updateDoc,
             serverTimestamp,
           } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-lite.js";
           // Import the functions you need from the SDKs you need
@@ -305,8 +306,8 @@
 
                 await setDoc(doc(db, "users", user.uid), {
                   username: SignUpUsername.value,
+                  cart : {},
                   createdAt: serverTimestamp(),
-                  cart: "",
                 });
                 window.location.href = "./index.html";
 
