@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
     />
     <link rel="stylesheet" href="./asset/style/styleIndex.css" />
+    <link rel="stylesheet" href="./asset/style/styleProductBox.css" />
 
     <link
       href="https://fonts.googleapis.com/css?family=Caveat Brush"
@@ -28,7 +29,7 @@
   </head>
   <body>
     <div id="TaskBar">
-      <a class="LogoSection"
+      <a class="LogoSection" onclick="window.location.href=`index.html`"
         ><div class="Logo"><img src="./asset/img/Logo.png" /></div>
         <hr />
 
@@ -42,18 +43,16 @@
     <div class="SourceSection">
       <a>Home</a>
       <div>/</div>
-      <a>Chainsaw Man</a>
+      <a class="Series"></a>
       <div>/</div>
 
-      <a>Volume 22</a>
+      <a id="VolumeLink"></a>
     </div>
     <div class="container">
       <div class="containerLayout">
-        <div class="ProductImage">
-          <img src="./asset/img/Volume_22.webp" alt="" />
-        </div>
+        <div id="ProductImage"></div>
         <div class="ProductSection">
-          <h1 class="ProductTitle">Chainsaw Man, Vol 19</h1>
+          <h1 class="Name"></h1>
           <div class="StarRating">
             <div>
               <i class="StarIcon bi bi-star-fill"></i>
@@ -63,21 +62,29 @@
             </div>
             <div style="margin: 0 10px 0 10px">|</div>
             <div style="margin-right: 5px">Đã bán:</div>
-            <div style="color: rgba(0, 0, 0, 1)">10</div>
+            <div style="color: rgba(0, 0, 0, 1)" id="Sold">10</div>
           </div>
           <div class="DescriptionGrid">
             <div class="Description">
               <div>Author:</div>
-              <strong>Kei Urana</strong>
+              <strong id="Author"> </strong>
             </div>
             <div class="Description">
               <div>Publisher:</div>
-              <strong>Kodansha</strong>
+              <strong id="Publisher"></strong>
+            </div>
+            <div class="Description">
+              <div>Volume:</div>
+              <strong id="Volume"></strong>
+            </div>
+            <div class="Description">
+              <div>Part of:</div>
+              <strong class="Series"></strong>
             </div>
           </div>
           <div class="Price">
-            <h1>152.000đ</h1>
-            <div class="PriceBefore">169.000 đ</div>
+            <h1 id="Price"></h1>
+            <div id="PriceBefore"></div>
           </div>
           <div class="Delivery">
             <h2 class="DeliveryTitle">Shipping information</h2>
@@ -97,10 +104,16 @@
               <a id="Change">Change</a>
             </div>
             <div id="DeliverySpeed">
-              <div style="margin-bottom: 10px">
-                <i class="fa-regular fa-truck" style="font-size: 16px"></i>
-                <span><strong>Standard Delivery</strong></span>
-              </div>
+              <select style="margin-bottom: 10px">
+                <option value="1">
+                  <i class="fa-regular fa-truck" style="font-size: 16px"></i>
+                  <span><strong>Standard Delivery</strong></span>
+                </option>
+                <option value="2">
+                  <i class="fa-regular fa-truck" style="font-size: 16px"></i>
+                  <span><strong>Faster Delivery</strong></span>
+                </option>
+              </select>
               <div style="margin-left: 22px">
                 <span>Expected delivery: </span> <strong>Sunday - 01-04</strong>
               </div>
@@ -139,48 +152,29 @@
           <h3>Detail information</h3>
           <div class="Detail">
             <div class="BulletPoint">Product code</div>
-            <div>123</div>
+            <div id="ProductCode"></div>
             <div class="BulletPoint">Author</div>
-            <div>123</div>
+            <div id="Author2"></div>
             <div class="BulletPoint">Publisher</div>
-            <div>123</div>
+            <div id="Publisher2"></div>
             <div class="BulletPoint">Publish Year</div>
-            <div>123</div>
+            <div id="PublishYear">23</div>
             <div class="BulletPoint">Page</div>
-            <div>123</div>
+            <div id="PageNumber"></div>
           </div>
           <div class="Summary">
             <h4>Summary</h4>
-            <div>Chainsaw Man, Vol 19</div>
-            <p id="Summary">
-              Rudo lives in the slums of a floating city, where the poor scrape
-              by under the shadow of the rich who live a sumptuous life, simply
-              casting their garbage off the side, into the abyss. Then one day,
-              he's falsely accused of murder, and his wrongful conviction leads
-              to an unimaginable punishment: exile off the edge, with the rest
-              of the trash. <br /><br />
-              Down on the surface, the cast-off waste of humanity has bred
-              vicious monsters, and if Rudo wants to have any hope of
-              discovering the truth and seeking vengeance, he will have to
-              master a new power and join a group known as the "Cleaners" who
-              battle the hulking trash beasts of the Pit!
-            </p>
+            <div class="Name"></div>
+            <p id="Summary"></p>
           </div>
         </div>
       </div>
     </div>
     <div class="SameSeries">
-      <h3>Chaisaw Man Series</h3>
-      <hr>
-      <div class="MangaBox">
-        <img src="./asset/img/Volume_22.webp" alt="">
-        <hr>
-        <div class="MangaInfo">
-          <div>Chainsaw Man, Vol 19</div>
-          <div class="">152.000đ</div>
-          <div>169.000 đ</div>
-        </div>
-      </div>
+      <h3 class="Series" id="RelatedTitle"></h3>
+
+      <hr />
+      <div id="RelatedSection"></div>
     </div>
 
     <script>
@@ -201,5 +195,150 @@
       src="https://kit.fontawesome.com/cfe2659f79.js"
       crossorigin="anonymous"
     ></script>
+    <script type="module">
+      import { getAuth } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        setDoc,
+        getDoc,
+        collection,
+        getDocs,
+        updateDoc,
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-lite.js";
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4qqrJ1zZ6NkufDcBtfRrHpr_S3RkG-H4",
+        authDomain: "mangastore-9268b.firebaseapp.com",
+        projectId: "mangastore-9268b",
+        storageBucket: "mangastore-9268b.firebasestorage.app",
+        messagingSenderId: "190342870546",
+        appId: "1:190342870546:web:411c9b58d14a85a47f4acb",
+        measurementId: "G-JV9VN7T01V",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const auth = getAuth();
+      const db = getFirestore();
+
+      //Load Data
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get("id");
+      const docRef = doc(db, "Manga", productId);
+      const docSnap = await getDoc(docRef);
+
+      const product = docSnap.data();
+      document.getElementById("RelatedTitle").innerHTML += "Other ";
+
+      document
+        .querySelectorAll(".Name")
+        .forEach((el) => (el.innerHTML += product.Name));
+      document
+        .querySelectorAll(".Series")
+        .forEach((el) => (el.innerHTML += product.Series));
+      document.getElementById("RelatedTitle").innerHTML += " volumes";
+
+      document.getElementById(
+        "ProductImage"
+      ).innerHTML = `          <img src="${product.img}" alt="" />
+      `;
+      document.getElementById("Author").innerHTML = product.Author;
+      document.getElementById("Author2").innerHTML = product.Author;
+      document.getElementById("Publisher").innerHTML = product.Publish;
+      document.getElementById("ProductCode").innerHTML = productId;
+      document.getElementById("Publisher2").innerHTML = product.Publish;
+      document.getElementById("PublishYear").innerHTML = product.PublishYear;
+      document.getElementById("Volume").innerHTML = product.Volume;
+      document.getElementById("PriceBefore").innerHTML =
+        product.PriceBefore.toLocaleString() + " ₫";
+      document.getElementById("Price").innerHTML =
+        product.Price.toLocaleString() + " ₫";
+      document.getElementById("PageNumber").innerHTML = product.PageNumber;
+      document.getElementById("Summary").innerHTML = product.Summary;
+      document.getElementById("VolumeLink").innerHTML =
+        "Volume " + product.Volume;
+      document.getElementById("Sold").innerHTML = product.Sold;
+      //Load Related Series
+      // Load Related Series
+      const RelatedList = {};
+      const querySnapshot = await getDocs(collection(db, "Manga"));
+
+      querySnapshot.forEach((doc) => {
+        RelatedList[doc.id] = doc.data();
+      });
+      const currentProduct = docSnap.data();
+
+      Object.keys(RelatedList).forEach((id) => {
+        const relatedProduct = RelatedList[id];
+
+        if (
+          relatedProduct.Series === currentProduct.Series &&
+          id !== productId
+        ) {
+          console.log(relatedProduct);
+          document.getElementById("RelatedSection").innerHTML += `
+                    <a  class="product-link" data-id="${id}">
+<div class="ProductBox">
+          <div>
+            <img src="${relatedProduct.img}" alt="" />
+          </div>
+          <div class="ProductContent">
+            <div class="ProductName">${relatedProduct.Name}</div>
+            <div>${relatedProduct.Author}</div>
+            <div class="StarRating">
+              ${StarRating(relatedProduct.Rating)}
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; gap:5px;">
+                <div class="Price">
+                  ${relatedProduct.Price.toLocaleString()} ₫
+                </div>
+                <div class="BeforePrice">
+                  ${relatedProduct.PriceBefore.toLocaleString()} ₫
+                </div>
+              </div>
+              <button class="BuyButton">Buy</button>
+            </div>
+          </div>
+        </div>
+      </a>
+    `;
+        }
+      });
+
+      function StarRating(rating) {
+        let starsHTML = "";
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+
+        for (let i = 1; i <= 5; i++) {
+          if (i <= fullStars) {
+            starsHTML += `<span> <i class="Star bi bi-star-fill"></i></span>`;
+          } else if (i === fullStars + 1 && hasHalfStar) {
+            starsHTML += `<span> <i class=" Star bi bi-star-half"></i></span>`;
+          } else {
+            starsHTML += `<span> <i class="Star bi bi-star"></i></span>`;
+          }
+        }
+
+        return starsHTML;
+      }
+      document.querySelectorAll(".product-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const id = link.dataset.id;
+          window.location.href = `product.html?id=${id}`;
+        });
+      });
+    </script>
   </body>
 </html>

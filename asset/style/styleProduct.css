@@ -10,13 +10,13 @@
   justify-content: space-between;
   gap: 2vw;
 }
-.ProductImage {
+#ProductImage {
   display: flex;
   justify-content: center;
   width: 44vw;
   align-items: flex-start;
 }
-.ProductImage img {
+#ProductImage img {
   height: auto;
   max-width: 33vw;
   width: 100%;
@@ -55,7 +55,7 @@ body {
   overflow: scroll;
   scrollbar-width: none;
 }
-.ProductTitle {
+#ProductTitle {
   font-size: 32px;
   line-height: 1.25;
   font-weight: bold;
@@ -89,12 +89,12 @@ body {
   flex-direction: row;
   align-items: center;
 }
-h1 {
+#Price {
   color: #00b4d8;
   font-weight: 700;
   margin-right: 10px !important;
 }
-.PriceBefore {
+#PriceBefore {
   color: #707070;
   font-size: 14px;
   text-decoration-line: line-through;
@@ -251,25 +251,13 @@ h4 {
 .SameSeries {
   margin: 1vh 10vw;
 }
-.SameSeriesSection {
+#RelatedSection {
+  display: flex;
+  flex-direction: row;
   overflow-x: hidden;
   scrollbar-width: none;
 }
-.MangaBox {
-  display: flex;
-  flex-direction: column;
-  max-width: 225px;
-  justify-content: center;
-  padding: 10px;
-  border: 0.5px #ceccd3 solid;
-  border-radius: 7px;
-}
-.MangaBox img {
-  max-height: 190px;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
+
 /*Reset CSS*/
 html,
 body,

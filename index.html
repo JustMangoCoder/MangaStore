@@ -37,7 +37,7 @@
         </div>
       </div>
       <div><img class="IndexImage" src="./asset/img/TitleCard.png" /></div>
-      <div id="TrendingPage">
+      <div id="TrendingPage" class="ProductDisplay">
         <div class="TitleHeader"><h2>Trending</h2></div>
         <div class="ProductIndexSection" id="TrendingSection"></div>
       </div>
@@ -89,7 +89,7 @@
         const product = ProductList[id];
 
         trendingSection.innerHTML += `
-          <a
+          <a  class="product-link" data-id="${id}"
         ><div class="ProductBox">
           <div><img src="${product.img}" alt="" /></div>
           <div class="ProductContent">
@@ -142,6 +142,13 @@
 
         return starsHTML;
       }
+      // Move to Product Page
+      document.querySelectorAll(".product-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const id = link.dataset.id;
+          window.location.href = `product.html?id=${id}`;
+        });
+      });
     </script>
   </body>
 </html>
