@@ -37,6 +37,11 @@
   color: #018790;
   font-weight: bold;
 }
+.BeforePrice {
+  color:#707070;
+  font-size:12px;
+  text-decoration: line-through;
+}
 .checked {
   color: orange;
 }

@@ -1,0 +1,296 @@
+.container {
+  padding: 1vh 5vw 1vh 5vw;
+}
+.containerLayout {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  height: 100vh;
+
+  justify-content: space-between;
+  gap: 2vw;
+}
+.ProductImage {
+  display: flex;
+  justify-content: center;
+  width: 44vw;
+  align-items: flex-start;
+}
+.ProductImage img {
+  height: auto;
+  max-width: 33vw;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+body {
+  margin: 0;
+  font-family: "Montserrat";
+}
+.SourceSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 30px;
+  gap: 10px;
+}
+
+/* Source Section */
+.SourceSection a {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+.SourceSection div {
+  color: rgba(0, 0, 0, 0.45);
+}
+.SourceSection a:hover {
+  color: rgba(0, 0, 0, 1);
+}
+/*Description*/
+.ProductSection {
+  max-width: 44vw;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+.ProductTitle {
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.StarRating {
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  color: rgba(0, 0, 0, 0.45);
+}
+.StarRating .StarIcon {
+  color: orange !important;
+}
+.DescriptionGrid {
+  display: grid;
+  column-count: 2;
+  grid-template-columns: auto auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.Description {
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  gap: 5px;
+}
+/*Price*/
+.Price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+h1 {
+  color: #00b4d8;
+  font-weight: 700;
+  margin-right: 10px !important;
+}
+.PriceBefore {
+  color: #707070;
+  font-size: 14px;
+  text-decoration-line: line-through;
+}
+/* Quanity Input */
+.ProductQuanity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.QuanityLabel {
+  font-size: 18px;
+  font-weight: 650;
+  text-align: left;
+  max-width: 200px;
+  min-width: 150px;
+}
+.QuanityButton {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  color: #707070;
+  text-align: center;
+  transition: color 0.2s ease-in-out;
+  touch-action: manipulation;
+  color: #646464 !important;
+  justify-content: center;
+  transition: 0.5s;
+  border: 1px solid #ceccd3;
+}
+.QuanityButton i {
+  font-weight: 700;
+  font-size: 16px;
+}
+.QuanityButton :hover {
+  cursor: pointer;
+  color: #00b4d8;
+}
+#QuanityInput {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  margin: 0;
+  border: 0;
+  width: 40px;
+  height: 30.4px !important;
+  border-top: 1px solid #c9cdd0;
+  border-bottom: 1px solid #c9cdd0;
+  color: #5e6061;
+  padding: 0px 12px;
+  font-size: 16px;
+}
+.Quanity {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+}
+.minus {
+  border-radius: 6px 0 0 6px;
+}
+.plus {
+  border-radius: 0 6px 6px 0;
+}
+/*Delivery*/
+.Delivery {
+  margin: 30px 0 40px 0;
+}
+.DeliveryTitle {
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
+  margin-bottom: 10px !important;
+}
+#DeliveryLocation {
+  font-weight: 700;
+  margin-left: 5px;
+  margin-right: 15px;
+}
+#Change {
+  cursor: pointer;
+  font-weight: 500;
+  color: #2489f4;
+}
+#DeliverySpeed {
+  font-size: 14px;
+}
+.Button {
+  display: flex;
+  flex-direction: row;
+  margin: 40px 0 40px;
+  gap: 10px;
+  align-items: center;
+}
+#AddToCart {
+  color: #00b4d8;
+  background: #fff;
+  border: 2px solid #00b4d8;
+}
+#Buy {
+  background: #00b4d8;
+  color: #fff;
+  border: 2px solid #00b4d8;
+}
+.Button button {
+  width: 100%;
+  height: 50px;
+  font-weight: 700;
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/*Detail Info*/
+.Detail {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: flex-start;
+  color: black;
+  row-gap: 10px;
+  column-gap: 40px;
+}
+.BulletPoint {
+  color: #707070 !important;
+}
+h3 {
+  margin-bottom: 10px !important;
+}
+/*Summary*/
+.Summary {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 20px;
+  margin-bottom: 20px !important;
+}
+#Summary {
+  font-weight: 300;
+  margin-top: 20px;
+  text-align: justify;
+}
+/*Section*/
+.SameSeries {
+  margin: 1vh 10vw;
+}
+.SameSeriesSection {
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.MangaBox {
+  display: flex;
+  flex-direction: column;
+  max-width: 225px;
+  justify-content: center;
+  padding: 10px;
+  border: 0.5px #ceccd3 solid;
+  border-radius: 7px;
+}
+.MangaBox img {
+  max-height: 190px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+/*Reset CSS*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}

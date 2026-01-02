@@ -3,11 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./asset/style/styleProductBox.css" />
+    <link rel="stylesheet" href="./asset/style/styleProduct.css" />
     <link
       rel="stylesheet"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    />
+    <link rel="stylesheet" href="./asset/style/styleIndex.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Caveat Brush"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
     <link
       rel="stylesheet"
@@ -17,10 +27,179 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="TrendingPage">
-      <div class="TitleHeader"><h2>Trending</h2></div>
-      <div class="ProductIndexSection" id="TrendingSection"></div>
+    <div id="TaskBar">
+      <a class="LogoSection"
+        ><div class="Logo"><img src="./asset/img/Logo.png" /></div>
+        <hr />
+
+        <div class="LogoWatermark">JustMangaStore</div></a
+      >
+      <div class="ToolSection">
+        <a id="Search"><i class="icon bi bi-search"></i></a>
+        <a id="Cart"><i class="icon bi bi-cart"></i></a>
+      </div>
     </div>
-   
+    <div class="SourceSection">
+      <a>Home</a>
+      <div>/</div>
+      <a>Chainsaw Man</a>
+      <div>/</div>
+
+      <a>Volume 22</a>
+    </div>
+    <div class="container">
+      <div class="containerLayout">
+        <div class="ProductImage">
+          <img src="./asset/img/Volume_22.webp" alt="" />
+        </div>
+        <div class="ProductSection">
+          <h1 class="ProductTitle">Chainsaw Man, Vol 19</h1>
+          <div class="StarRating">
+            <div>
+              <i class="StarIcon bi bi-star-fill"></i>
+              <i class="StarIcon bi bi-star-fill"></i>
+              <i class="StarIcon bi bi-star-half"></i>
+              <i class="StarIcon bi bi-star"></i>
+            </div>
+            <div style="margin: 0 10px 0 10px">|</div>
+            <div style="margin-right: 5px">Đã bán:</div>
+            <div style="color: rgba(0, 0, 0, 1)">10</div>
+          </div>
+          <div class="DescriptionGrid">
+            <div class="Description">
+              <div>Author:</div>
+              <strong>Kei Urana</strong>
+            </div>
+            <div class="Description">
+              <div>Publisher:</div>
+              <strong>Kodansha</strong>
+            </div>
+          </div>
+          <div class="Price">
+            <h1>152.000đ</h1>
+            <div class="PriceBefore">169.000 đ</div>
+          </div>
+          <div class="Delivery">
+            <h2 class="DeliveryTitle">Shipping information</h2>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                font-size: 14px;
+                margin-bottom: 10px;
+              "
+            >
+              <div>Delivery to</div>
+              <div id="DeliveryLocation">
+                Phường Bến Nghé, Quận 1, Hồ Chí Minh
+              </div>
+              <a id="Change">Change</a>
+            </div>
+            <div id="DeliverySpeed">
+              <div style="margin-bottom: 10px">
+                <i class="fa-regular fa-truck" style="font-size: 16px"></i>
+                <span><strong>Standard Delivery</strong></span>
+              </div>
+              <div style="margin-left: 22px">
+                <span>Expected delivery: </span> <strong>Sunday - 01-04</strong>
+              </div>
+            </div>
+          </div>
+          <div class="ProductQuanity">
+            <label class="QuanityLabel">Quanity:</label>
+            <div class="Quanity">
+              <button
+                class="QuanityButton minus"
+                type="button"
+                onclick="Decrease()"
+              >
+                <i class="bi bi-dash"></i>
+              </button>
+              <input type="text" value="1" id="QuanityInput" />
+              <button
+                class="QuanityButton plus"
+                type="button"
+                onclick="Increase()"
+              >
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="Button">
+            <button id="AddToCart">
+              <span><i class="fa-solid fa-basket-shopping"></i></span>
+              <span>Add to Cart</span>
+            </button>
+            <button id="Buy">
+              <span><i class="fa-regular fa-money-bill-1"></i></span>
+              <span>Buy now</span>
+            </button>
+          </div>
+          <h3>Detail information</h3>
+          <div class="Detail">
+            <div class="BulletPoint">Product code</div>
+            <div>123</div>
+            <div class="BulletPoint">Author</div>
+            <div>123</div>
+            <div class="BulletPoint">Publisher</div>
+            <div>123</div>
+            <div class="BulletPoint">Publish Year</div>
+            <div>123</div>
+            <div class="BulletPoint">Page</div>
+            <div>123</div>
+          </div>
+          <div class="Summary">
+            <h4>Summary</h4>
+            <div>Chainsaw Man, Vol 19</div>
+            <p id="Summary">
+              Rudo lives in the slums of a floating city, where the poor scrape
+              by under the shadow of the rich who live a sumptuous life, simply
+              casting their garbage off the side, into the abyss. Then one day,
+              he's falsely accused of murder, and his wrongful conviction leads
+              to an unimaginable punishment: exile off the edge, with the rest
+              of the trash. <br /><br />
+              Down on the surface, the cast-off waste of humanity has bred
+              vicious monsters, and if Rudo wants to have any hope of
+              discovering the truth and seeking vengeance, he will have to
+              master a new power and join a group known as the "Cleaners" who
+              battle the hulking trash beasts of the Pit!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="SameSeries">
+      <h3>Chaisaw Man Series</h3>
+      <hr>
+      <div class="MangaBox">
+        <img src="./asset/img/Volume_22.webp" alt="">
+        <hr>
+        <div class="MangaInfo">
+          <div>Chainsaw Man, Vol 19</div>
+          <div class="">152.000đ</div>
+          <div>169.000 đ</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Increase And Decrease Input
+      let qty = document.getElementById("QuanityInput");
+      function Decrease() {
+        if (qty.value <= 1) {
+          qty.value = 1;
+        } else {
+          qty.value = parseInt(qty.value) - 1;
+        }
+      }
+      function Increase() {
+        qty.value = parseInt(qty.value) + 1;
+      }
+    </script>
+    <script
+      src="https://kit.fontawesome.com/cfe2659f79.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
