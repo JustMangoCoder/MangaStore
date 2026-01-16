@@ -115,7 +115,8 @@
                 </option>
               </select>
               <div style="margin-left: 22px">
-                <span>Expected delivery: </span> <strong>Sunday - 01-04</strong>
+                <span>Expected delivery: </span>
+                <strong id="DeliveryDate"></strong>
               </div>
             </div>
           </div>
@@ -250,13 +251,15 @@
       document.getElementById(
         "ProductImage"
       ).innerHTML = `          <img src="${product.img}" alt="" />
-      `;
+            `;
       document.getElementById("Author").innerHTML = product.Author;
       document.getElementById("Author2").innerHTML = product.Author;
       document.getElementById("Publisher").innerHTML = product.Publish;
       document.getElementById("ProductCode").innerHTML = productId;
       document.getElementById("Publisher2").innerHTML = product.Publish;
-      document.getElementById("PublishYear").innerHTML = product.PublishYear;
+      document.getElementById("PublishYear").innerHTML =
+        product.PublishDate.toDate().toLocaleDateString("vi-VN");
+      console.log(product.PublishDate);
       document.getElementById("Volume").innerHTML = product.Volume;
       document.getElementById("PriceBefore").innerHTML =
         product.PriceBefore.toLocaleString() + " ₫";
@@ -267,7 +270,13 @@
       document.getElementById("VolumeLink").innerHTML =
         "Volume " + product.Volume;
       document.getElementById("Sold").innerHTML = product.Sold;
-      //Load Related Series
+      const deliveryDays = product.DeliveryDay; // e.g. 20
+
+      const deliveryDate = new Date(); // today
+      deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
+      document.getElementById("DeliveryDate").innerHTML =
+        deliveryDate.toLocaleDateString("vi-VN");
+
       // Load Related Series
       const RelatedList = {};
       const querySnapshot = await getDocs(collection(db, "Manga"));
@@ -286,33 +295,33 @@
         ) {
           console.log(relatedProduct);
           document.getElementById("RelatedSection").innerHTML += `
-                    <a  class="product-link" data-id="${id}">
-<div class="ProductBox">
-          <div>
-            <img src="${relatedProduct.img}" alt="" />
-          </div>
-          <div class="ProductContent">
-            <div class="ProductName">${relatedProduct.Name}</div>
-            <div>${relatedProduct.Author}</div>
-            <div class="StarRating">
-              ${StarRating(relatedProduct.Rating)}
-            </div>
-
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <div style="display:flex; gap:5px;">
-                <div class="Price">
-                  ${relatedProduct.Price.toLocaleString()} ₫
+                          <a  class="product-link" data-id="${id}">
+      <div class="ProductBox">
+                <div>
+                  <img src="${relatedProduct.img}" alt="" />
                 </div>
-                <div class="BeforePrice">
-                  ${relatedProduct.PriceBefore.toLocaleString()} ₫
+                <div class="ProductContent">
+                  <div class="ProductName">${relatedProduct.Name}</div>
+                  <div>${relatedProduct.Author}</div>
+                  <div class="StarRating">
+                    ${StarRating(relatedProduct.Rating)}
+                  </div>
+
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="display:flex; gap:5px;">
+                      <div class="Price">
+                        ${relatedProduct.Price.toLocaleString()} ₫
+                      </div>
+                      <div class="BeforePrice">
+                        ${relatedProduct.PriceBefore.toLocaleString()} ₫
+                      </div>
+                    </div>
+                    <button class="BuyButton">Buy</button>
+                  </div>
                 </div>
               </div>
-              <button class="BuyButton">Buy</button>
-            </div>
-          </div>
-        </div>
-      </a>
-    `;
+            </a>
+          `;
         }
       });
 

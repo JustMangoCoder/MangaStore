@@ -38,7 +38,13 @@
       </div>
       <div><img class="IndexImage" src="./asset/img/TitleCard.png" /></div>
       <div id="TrendingPage" class="ProductDisplay">
-        <div class="TitleHeader"><h2>Trending</h2></div>
+        <div class="TitleHeader">
+          <h2>Trending</h2>
+          <div style="justify-self: end;">
+            <button class="ScrollButton" id="ScrollLeft"><</button>
+            <button class="ScrollButton" id="ScrollRight">></button>
+          </div>
+        </div>
         <div class="ProductIndexSection" id="TrendingSection"></div>
       </div>
     </div>
@@ -147,6 +153,22 @@
         link.addEventListener("click", () => {
           const id = link.dataset.id;
           window.location.href = `./product.html?id=${id}`;
+        });
+      });
+    </script>
+    <script>
+      const trendingSection = document.getElementById("TrendingSection");
+
+      document.getElementById("ScrollLeft").addEventListener("click", () => {
+        trendingSection.scrollBy({
+          left: -300,
+          behavior: "smooth",
+        });
+      });
+      document.getElementById("ScrollRight").addEventListener("click", () => {
+        trendingSection.scrollBy({
+          left: 300,
+          behavior: "smooth",
         });
       });
     </script>
