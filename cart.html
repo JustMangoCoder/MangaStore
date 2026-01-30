@@ -5,19 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./asset/style/styleCart.css" />
     <link rel="stylesheet" href="./asset/style/styleProduct.css" />
+    <link rel="stylesheet" href="./asset/style/styleIndex.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat"
       rel="stylesheet"
     />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Caveat Brush"
+      rel="stylesheet"
     />
     <title>Shopping Cart | JustMangaStore</title>
     <link rel="icon" href="./asset/img/Logo.png" />
   </head>
   <body>
-    <div id="CartSection">
+    <nav id="TaskBar">
+      <a class="LogoSection"
+        ><div class="Logo"><img src="./asset/img/Logo.png" /></div>
+        <hr />
+
+        <div class="LogoWatermark">JustMangaStore</div></a
+      >
+      <div class="DropSection">
+        <a id="Series" class="DropButton" data-type="series">
+          Series
+          <span
+            ><i class="bi bi-chevron-down Arrow" data-type="series"></i></span
+        ></a>
+        <a id="Recent" class="DropButton" data-type="recent">
+          Recent <span><i class="bi bi-chevron-down Arrow"></i></span>
+        </a>
+        <div class="DropContainer hide" id="Drop"></div>
+      </div>
+      <div class="ToolSection">
+        <a id="Search"><i class="icon bi bi-search"></i></a>
+        <a id="Cart" onclick="window.location.href = './cart.html'"
+          ><i class="icon bi bi-cart"></i
+        ></a>
+        <a id="User" onclick="window.location.href = './login.html'"
+          ><i class="icon bi bi-person"></i
+        ></a>
+      </div>
+    </nav>
+    <div class="CartSection">
+      <div style="display: flex; flex-direction: row">Cart</div>
+      <div id="CartSection">
       <div class="CartItem">
         <div class="LeftPart">
           <img class="CartImage" src="./asset/img/Volume_22.webp" alt="" />
@@ -50,6 +86,8 @@
 
       <hr class="BorderBottom" />
     </div>
+    </div>
+    
     <!-- <script>
       let qty = document.querySelector(".QuanityInput");
       function Decrease() {
@@ -186,9 +224,18 @@
         const productId = cartItem.dataset.id;
         const user = auth.currentUser;
         if (!user || !productId) return;
-
         await updateDoc(doc(db, "users", user.uid), {
           [`Cart.${productId}`]: qty,
+        });
+        console.log("Sucess");
+      }
+      async function removeFromFirestore(cartItem) {
+        const productId = cartItem.dataset.id;
+        const user = auth.currentUser;
+        if (!user || !productId) return;
+
+        await updateDoc(doc(db, "users", user.uid), {
+          [`Cart.${productId}`]: deleteField(),
         });
       }
 
@@ -235,6 +282,75 @@
               </button>
             </div>
           </div>`;
+      }
+      //Drop Animation
+      document.querySelectorAll(".DropButton").forEach((button) => {
+        button.addEventListener("mouseenter", () => {
+          Show(button.dataset.type);
+        });
+      });
+      document.getElementById("Drop").addEventListener("mouseleave", Hide);
+
+      function Show(ButtonName) {
+        document.getElementById("Drop").classList.remove("hide");
+        document.querySelector(".Arrow").classList.remove("bi-chevron-down");
+        document.querySelector(".Arrow").classList.add("bi-chevron-up");
+
+        if (ButtonName == "series") {
+          Drop.innerHTML = "";
+          console.log("Series");
+          for (let i = 0; i < uniqueSeries.length; i++) {
+            RenderSameManga(uniqueSeries[i]);
+          }
+        }
+        if (ButtonName == "recent") {
+          Drop.innerHTML = "";
+          console.log("Series");
+          RenderLatestManga();
+        }
+      }
+
+      function RenderSameManga(uniqueSeries) {
+        const Drop = document.getElementById("Drop");
+        const PickManga = Object.values(ProductList).filter(
+          (manga) => manga.Series === uniqueSeries,
+        );
+
+        const randomManga =
+          PickManga[Math.floor(Math.random() * PickManga.length)];
+        Drop.innerHTML += `<a class="ItemInside"   onclick="window.location.href='./product.html?id=${randomManga.id}'">
+
+                    <div class="ItemInsideImage">
+                      <img src="${randomManga.img}" alt="" />
+                    </div>
+                    <div>${randomManga.Series}</div>
+                  </a>
+              `;
+      }
+      function RenderLatestManga(count = 5) {
+        const SeriesTime = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        SeriesTime.sort(
+          (a, b) => new Date(b.PublishDate) - new Date(a.PublishDate),
+        ).slice(0, count);
+        for (let i = 0; i < SeriesTime.length; i++) {
+          Drop.innerHTML += `<a class="ItemInside"      onclick="window.location.href='./product.html?id=${SeriesTime[i].id}'">
+
+                    <div class="ItemInsideImage">
+                      <img src="${SeriesTime[i].img}" alt="" />
+                    </div>
+                    <div>${SeriesTime[i].Name}</div>
+                  </a>
+              `;
+        }
+      }
+      function Hide() {
+        document.getElementById("Drop").classList.add("hide");
+        document.querySelector(".Arrow").classList.remove("bi-chevron-up");
+        document.querySelector(".Arrow").classList.add("bi-chevron-down");
+        return;
       }
     </script>
   </body>
