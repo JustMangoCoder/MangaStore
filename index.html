@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -31,16 +31,33 @@
 
           <div class="LogoWatermark">JustMangaStore</div></a
         >
+        <div class="DropSection">
+          <a id="Series" class="DropButton" data-type="series">
+            Series
+            <span
+              ><i class="bi bi-chevron-down Arrow" data-type="series"></i></span
+          ></a>
+          <a id="Recent" class="DropButton" data-type="recent">
+            Recent <span><i class="bi bi-chevron-down Arrow"></i></span>
+          </a>
+          <div class="DropContainer hide" id="Drop"></div>
+        </div>
         <div class="ToolSection">
           <a id="Search"><i class="icon bi bi-search"></i></a>
-          <a id="Cart"><i class="icon bi bi-cart"></i></a>
+          <a id="Cart" onclick="window.location.href = './cart.html'"
+            ><i class="icon bi bi-cart"></i
+          ></a>
+          <a id="User" onclick="window.location.href = './login.html'"
+            ><i class="icon bi bi-person"></i
+          ></a>
         </div>
       </div>
+
       <div><img class="IndexImage" src="./asset/img/TitleCard.png" /></div>
       <div id="TrendingPage" class="ProductDisplay">
         <div class="TitleHeader">
           <h2>Trending</h2>
-          <div style="justify-self: end;">
+          <div style="justify-self: end">
             <button class="ScrollButton" id="ScrollLeft"><</button>
             <button class="ScrollButton" id="ScrollRight">></button>
           </div>
@@ -49,7 +66,7 @@
       </div>
     </div>
     <script type="module">
-      import { getAuth } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+      import { getAuth,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
       import {
         getFirestore,
         doc,
@@ -58,6 +75,7 @@
         collection,
         getDocs,
         updateDoc,
+        
       } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-lite.js";
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
@@ -83,10 +101,20 @@
       const auth = getAuth();
       const db = getFirestore();
       //Get Data
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("✅ Signed in as:", user.email);
+        } else {
+          console.log("❌ Not signed in");
+        }
+      });
       const ProductList = {};
       const querySnapshot = await getDocs(collection(db, "Manga"));
       querySnapshot.forEach((doc) => {
-        ProductList[doc.id] = doc.data();
+        ProductList[doc.id] = {
+          id: doc.id,
+          ...doc.data(),
+        };
       });
       const trendingSection = document.getElementById("TrendingSection");
       trendingSection.innerHTML = "";
@@ -95,41 +123,41 @@
         const product = ProductList[id];
 
         trendingSection.innerHTML += `
-          <a  class="product-link" data-id="${id}"
-        ><div class="ProductBox">
-          <div><img src="${product.img}" alt="" /></div>
-          <div class="ProductContent">
-            <div class="ProductName">
-              ${product.Name}
-            </div>
-            <div class="">
-              ${product.Author}
-            </div>
-            <div class="StarRating">
-              ${StarRating(product.Rating)}
-            </div>
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-              "
-            >
-              <div  style="
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: center;
-                gap:5px
-              "><div class="Price">${product.Price.toLocaleString()} ₫</div>
-              <div class="BeforePrice">${product.PriceBefore.toLocaleString()} ₫</div></div>
-              <span><button class="BuyButton">Buy</button></span>
-            </div>
-          </div>
-        </div></a
-      >
-        `;
+                      <a  class="product-link" data-id="${id}"
+                    ><div class="ProductBox">
+                      <div><img src="${product.img}" alt="" /></div>
+                      <div class="ProductContent">
+                        <div class="ProductName">
+                          ${product.Name}
+                        </div>
+                        <div class="">
+                          ${product.Author}
+                        </div>
+                        <div class="StarRating">
+                          ${StarRating(product.Rating)}
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                          "
+                        >
+                          <div  style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap:5px
+                          "><div class="Price">${product.Price.toLocaleString()} ₫</div>
+                          <div class="BeforePrice">${product.PriceBefore.toLocaleString()} ₫</div></div>
+                          <span><button class="BuyButton">Buy</button></span>
+                        </div>
+                      </div>
+                    </div></a
+                  >
+                    `;
       });
       function StarRating(rating) {
         let starsHTML = "";
@@ -148,6 +176,9 @@
 
         return starsHTML;
       }
+
+      
+
       // Move to Product Page
       document.querySelectorAll(".product-link").forEach((link) => {
         link.addEventListener("click", () => {
@@ -155,6 +186,84 @@
           window.location.href = `./product.html?id=${id}`;
         });
       });
+      //Extract Series
+      //Series
+      const uniqueSeries = [
+        ...new Set(
+          querySnapshot.docs.map((doc) => doc.data().Series).filter(Boolean),
+        ),
+      ];
+      //Recent
+
+      //Drop Animation
+      document.querySelectorAll(".DropButton").forEach((button) => {
+        button.addEventListener("mouseenter", () => {
+          Show(button.dataset.type);
+        });
+      });
+      document.getElementById("Drop").addEventListener("mouseleave", Hide);
+
+      function Show(ButtonName) {
+        document.getElementById("Drop").classList.remove("hide");
+        document.querySelector(".Arrow").classList.remove("bi-chevron-down");
+        document.querySelector(".Arrow").classList.add("bi-chevron-up");
+
+        if (ButtonName == "series") {
+          Drop.innerHTML = "";
+          console.log("Series");
+          for (let i = 0; i < uniqueSeries.length; i++) {
+            RenderSameManga(uniqueSeries[i]);
+          }
+        }
+        if (ButtonName == "recent") {
+          Drop.innerHTML = "";
+          console.log("Series");
+          RenderLatestManga();
+        }
+      }
+
+      function RenderSameManga(uniqueSeries) {
+        const Drop = document.getElementById("Drop");
+        const PickManga = Object.values(ProductList).filter(
+          (manga) => manga.Series === uniqueSeries,
+        );
+
+        const randomManga =
+          PickManga[Math.floor(Math.random() * PickManga.length)];
+        Drop.innerHTML += `<a class="ItemInside"   onclick="window.location.href='./product.html?id=${randomManga.id}'">
+
+                    <div class="ItemInsideImage">
+                      <img src="${randomManga.img}" alt="" />
+                    </div>
+                    <div>${randomManga.Series}</div>
+                  </a>
+              `;
+      }
+      function RenderLatestManga(count = 5) {
+        const SeriesTime = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        SeriesTime.sort(
+          (a, b) => new Date(b.PublishDate) - new Date(a.PublishDate),
+        ).slice(0, count);
+        for (let i = 0; i < SeriesTime.length; i++) {
+          Drop.innerHTML += `<a class="ItemInside"      onclick="window.location.href='./product.html?id=${SeriesTime[i].id}'">
+
+                    <div class="ItemInsideImage">
+                      <img src="${SeriesTime[i].img}" alt="" />
+                    </div>
+                    <div>${SeriesTime[i].Name}</div>
+                  </a>
+              `;
+        }
+      }
+      function Hide() {
+        document.getElementById("Drop").classList.add("hide");
+        document.querySelector(".Arrow").classList.remove("bi-chevron-up");
+        document.querySelector(".Arrow").classList.add("bi-chevron-down");
+        return;
+      }
     </script>
     <script>
       const trendingSection = document.getElementById("TrendingSection");

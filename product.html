@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,11 +25,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <title>Document</title>
+    <title>${Name}</title>
   </head>
   <body>
     <div id="TaskBar">
-      <a class="LogoSection" onclick="window.location.href=`index.html`"
+      <a class="LogoSection" onclick="window.location.href = `index.html`"
         ><div class="Logo"><img src="./asset/img/Logo.png" /></div>
         <hr />
 
@@ -130,7 +130,7 @@
               >
                 <i class="bi bi-dash"></i>
               </button>
-              <input type="text" value="1" id="QuanityInput" />
+              <input type="text" value="1" class="QuanityInput" />
               <button
                 class="QuanityButton plus"
                 type="button"
@@ -180,7 +180,7 @@
 
     <script>
       // Increase And Decrease Input
-      let qty = document.getElementById("QuanityInput");
+      let qty = document.querySelector(".QuanityInput");
       function Decrease() {
         if (qty.value <= 1) {
           qty.value = 1;
@@ -248,9 +248,8 @@
         .forEach((el) => (el.innerHTML += product.Series));
       document.getElementById("RelatedTitle").innerHTML += " volumes";
 
-      document.getElementById(
-        "ProductImage"
-      ).innerHTML = `          <img src="${product.img}" alt="" />
+      document.getElementById("ProductImage").innerHTML =
+        `          <img src="${product.img}" alt="" />
             `;
       document.getElementById("Author").innerHTML = product.Author;
       document.getElementById("Author2").innerHTML = product.Author;
@@ -348,6 +347,26 @@
           window.location.href = `product.html?id=${id}`;
         });
       });
+      document.getElementById("AddToCart").addEventListener("click", addToCart)
+      async function addToCart() {
+        const user = auth.currentUser;
+
+        if (!user) {
+          alert("Please login first");
+          return;
+        }
+
+        const uid = user.uid;
+        const qty = Number(document.querySelector(".QuanityInput").value) || 1;
+
+        const userRef = doc(db, "users", uid);
+
+        await updateDoc(userRef, {
+          [`Cart.${productId}`]: qty,
+        });
+
+        console.log("Added to cart:", productId, qty);
+      }
     </script>
   </body>
 </html>

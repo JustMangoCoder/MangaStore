@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./asset/style/styleCart.css" />
+    <link rel="stylesheet" href="./asset/style/styleProduct.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <title>Shopping Cart | JustMangaStore</title>
+    <link rel="icon" href="./asset/img/Logo.png" />
+  </head>
+  <body>
+    <div id="CartSection">
+      <div class="CartItem">
+        <div class="LeftPart">
+          <img class="CartImage" src="./asset/img/Volume_22.webp" alt="" />
+
+          <div class="CartDescription">
+            <div><strong>Name: </strong> Chainsaw man</div>
+            <div><strong>Author: </strong> John Kafka</div>
+            <div><strong>Volume: </strong> 22</div>
+          </div>
+        </div>
+        <hr />
+        <div class="RightPart">
+          <div class="Price">$14.00</div>
+          <div class="ProductQuanity">
+            <div class="Quanity">
+              <button class="QuanityButton minus" type="button">
+                <i class="bi bi-dash"></i>
+              </button>
+              <input type="text" value="1" class="QuanityInput" />
+              <button class="QuanityButton plus" type="button">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </div>
+          <button class="Remove">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+
+      <hr class="BorderBottom" />
+    </div>
+    <!-- <script>
+      let qty = document.querySelector(".QuanityInput");
+      function Decrease() {
+        if (qty.value <= 1) {
+          qty.value = 1;
+          checkQty();
+        } else {
+          qty.value = parseInt(qty.value) - 1;
+        }
+      }
+      function Increase() {
+        qty.value = parseInt(qty.value) + 1;
+        checkQty()
+      }
+      function ReturnTo0() {
+        console.log("ReturnSucess");
+        qty.value = 0;
+        checkQty()
+      }
+      function checkQty() {
+        if (qty.value == 0) {
+          document.querySelector(".CartItem").classList.add("hide");
+          console.log("Returnto0");
+        }
+      }
+    </script> -->
+
+    <script type="module">
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        setDoc,
+        getDoc,
+        collection,
+        getDocs,
+        updateDoc,
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-lite.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4qqrJ1zZ6NkufDcBtfRrHpr_S3RkG-H4",
+        authDomain: "mangastore-9268b.firebaseapp.com",
+        projectId: "mangastore-9268b",
+        storageBucket: "mangastore-9268b.firebasestorage.app",
+        messagingSenderId: "190342870546",
+        appId: "1:190342870546:web:411c9b58d14a85a47f4acb",
+        measurementId: "G-JV9VN7T01V",
+      };
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const auth = getAuth();
+      const db = getFirestore();
+      const ProductList = {};
+      const querySnapshot = await getDocs(collection(db, "Manga"));
+      querySnapshot.forEach((doc) => {
+        ProductList[doc.id] = {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+
+      var CURRENT_UID = null;
+      let USER_CART = null;
+      // ...
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          console.log("✅ Signed in as:", user.email);
+          // user.uid exists → authenticated
+          CURRENT_UID = user.uid;
+          USER_CART = await loadUserCart(CURRENT_UID);
+
+          return CURRENT_UID;
+        } else {
+          console.log("❌ Not signed in");
+          // redirect back to login
+          window.location.href = "login.html";
+        }
+      });
+      async function loadUserCart(uid) {
+        const userRef = doc(db, "users", uid);
+        const snap = await getDoc(userRef);
+
+        if (!snap.exists()) {
+          console.log("⚠️ No user document found");
+          StartApp([]);
+          return;
+        }
+
+        const cartObj = snap.data().Cart || {};
+
+        // 🔥 convert to array + numeric sort
+        const sortedCart = Object.entries(cartObj).map(([id, data]) => ({
+          [id]: data,
+        }));
+
+        StartApp(sortedCart);
+      }
+      document.addEventListener("click", async (e) => {
+        const btn = e.target.closest("button");
+        if (!btn) return;
+
+        const cartItem = btn.closest(".CartItem");
+        if (!cartItem) return;
+
+        const qtyInput = cartItem.querySelector(".QuanityInput");
+        let qty = Number(qtyInput.value) || 1;
+        //  minus
+        if (btn.classList.contains("minus")) {
+          qty = Math.max(1, qty - 1);
+        }
+
+        // plus
+        if (btn.classList.contains("plus")) {
+          qty += 1;
+        }
+
+        // remove
+        if (btn.classList.contains("Remove")) {
+          cartItem.remove();
+          await removeFromFirestore(cartItem);
+          return;
+        }
+
+        qtyInput.value = qty;
+        await syncQty(cartItem, qty);
+      });
+
+      async function syncQty(cartItem, qty) {
+        const productId = cartItem.dataset.id;
+        const user = auth.currentUser;
+        if (!user || !productId) return;
+
+        await updateDoc(doc(db, "users", user.uid), {
+          [`Cart.${productId}`]: qty,
+        });
+      }
+
+      function StartApp(Cart) {
+        document.getElementById("CartSection").innerHTML = "";
+        for (let i = 0; i < Cart.length; i++) {
+          let item = Cart[i];
+          let CarItem = Object.keys(item)[0];
+          FindTheManga(CarItem, i);
+        }
+      }
+      function FindTheManga(CarItem) {
+        document.getElementById("CartSection").innerHTML +=
+          `<div class="CartItem">
+            <div class="LeftPart">
+              <img
+                class="CartImage"
+                src="${ProductList[CarItem].img}"
+                alt=""
+              />
+
+              <div class="CartDescription">
+                <div><strong>Name: </strong> ${ProductList[CarItem].Name}</div>
+                <div><strong>Author: </strong> ${ProductList[CarItem].Author}</div>
+                <div><strong>Volume: </strong> ${ProductList[CarItem].Volume}</div>
+              </div>
+            </div>
+            <hr />
+            <div class="RightPart">
+              <div class="Price">${ProductList[CarItem].Price.toLocaleString() + " ₫"}</div>
+              <div class="ProductQuanity">
+                <div class="Quanity">
+                  <button class="QuanityButton minus" type="button">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                  <input type="text" value="1" class="QuanityInput" />
+                  <button class="QuanityButton plus" type="button">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <button class="Remove">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>`;
+      }
+    </script>
+  </body>
+</html>

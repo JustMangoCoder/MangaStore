@@ -104,7 +104,6 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
 }
 .QuanityLabel {
   font-size: 18px;
@@ -136,7 +135,7 @@ body {
   cursor: pointer;
   color: #00b4d8;
 }
-#QuanityInput {
+.QuanityInput {
   display: flex;
   text-align: center;
   justify-content: center;

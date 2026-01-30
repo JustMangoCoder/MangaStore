@@ -1,0 +1,80 @@
+#CartSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 100px 0 100px;
+  justify-content: space-between;
+
+
+}
+.Notes {
+  max-width: 1024px;
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  top: 0;
+  left:50%;
+  padding-left:100px;
+  gap: 145px;
+}
+.CartItem {
+  display: flex;
+  flex-direction: row;
+  border-top: 2px solid #cbcbcb;
+  width: 100%;
+  height: 20vh;
+  align-items: center;
+}
+.CartItem.hide {
+  display: none;
+}
+.LeftPart {
+  width: 50%;
+
+  display: flex;
+  flex-direction: row;
+  padding-left: 50px;
+}
+.RightPart {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-right: 50px;
+  align-items: center;
+  gap: 100px;
+}
+.Remove {
+  border: none;
+  padding: none;
+  cursor: pointer;
+}
+.Remove i {
+  font-size: 18px;
+}
+
+.CartImage {
+  width: auto;
+  height: 18vh;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+.CartDescription {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  font-family: "Montserrat";
+}
+.CartItem hr {
+  height: 80%;
+  margin: 0;
+}
+.BorderBottom {
+  width: 100%;
+  border: 1px solid #cbcbcb;
+}

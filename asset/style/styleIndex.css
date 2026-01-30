@@ -13,9 +13,11 @@
   flex-direction: row;
   padding: 10px;
   align-items: center;
+  justify-content: space-between;
   margin: 0;
   max-width: 100%;
   flex-wrap: wrap;
+  position: relative;
 }
 .LogoWatermark {
   font-family: "Caveat Brush";
@@ -36,7 +38,6 @@
 .ToolSection {
   display: flex;
   flex-direction: row;
-  margin-left: auto;
   align-items: center;
   gap: 10px;
   min-width: 0;
@@ -49,6 +50,72 @@
 }
 .icon:hover {
   background-color: rgb(232, 230, 230);
+}
+/*Drop Section*/
+.DropButton {
+  border-radius: 19px;
+  padding: 8px;
+  background: none;
+  color: black;
+}
+.DropButton:hover {
+  background-color: #00b4d8;
+  color: white;
+}
+
+.DropContainer.hide {
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.DropContainer {
+  top: 100%; /* appear below "Series" */
+  left: 0;
+  display: flex;
+  gap: 10px;
+  height: 33vh;
+  padding: 20px;
+  width: 100%;
+  min-width: 1024px;
+  position: absolute;
+  overflow: hidden;
+  transform-origin: top;
+  background-color: white;
+  transform: scaleY(1);
+  opacity: 1;
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+}
+.ItemInside {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  max-height: 33vh;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.ItemInsideImage img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  border-radius: 10px;
+  transition: 0.3s;
+  transform: scale(1);
+}
+.ItemInsideImage img:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+.ItemInside div {
+  font-weight: bold;
+}
+.ItemInsideImage {
+  height: 31vh;
+  width: 200px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 /*Image*/
 .IndexImage {
@@ -82,7 +149,7 @@
   border: solid 1px rgb(217, 214, 214);
   cursor: pointer;
 }
-.ScrollButton:hover{
+.ScrollButton:hover {
   background-color: #00b4d8;
   color: white;
 }

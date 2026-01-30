@@ -257,7 +257,7 @@
 
                 await setDoc(doc(db, "users", user.uid), {
                   username: SignUpUsername.value,
-                  cart: {},
+                  Cart: {},
                   createdAt: serverTimestamp(),
                 });
                 window.location.href = "./index.html";
